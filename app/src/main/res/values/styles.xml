@@ -1,11 +1,56 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 首页底部导航栏tab布局样式-->
+    <style name="layout_main_tab_bottom">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <!-- 首页底部导航栏tab图片样式-->
+    <style name="iv_main_tab_bottom">
+        <item name="android:layout_width">@dimen/style_main_tab</item>
+        <item name="android:layout_height">@dimen/style_main_tab</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingTop">6dp</item>
+    </style>
+    <!-- 首页底部导航栏tab文字样式-->
+    <style name="tv_main_tab_bottom">
+        <item name="android:layout_width">@dimen/style_main_tab</item>
+        <item name="android:layout_height">14dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:textColor">@color/color_main_tab_text_selector</item>
+    </style>
+
+
+    <!-- 首页底部导航栏tab文字样式-->
+    <style name="tv_main_tab_bottom_msg_count">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:background">@drawable/bg_shape_main_msg_count</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

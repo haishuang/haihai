@@ -25,3 +25,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//gradle 的一下配置提出来，方便配置
+ext{
+    supportLibraryVersion = '28.0.0'
+
+    butterknifeVersion='9.0.0-rc1'
+}

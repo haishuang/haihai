@@ -1,0 +1,35 @@
+<resources>
+    <dimen name="style_main_tab">28dp</dimen>
+    <!-- 标题-->
+    <dimen name="title_size">17sp</dimen>
+    <!-- 顶部标题-->
+    <dimen name="title_top_size">17sp</dimen>
+    <!-- 副标题标题-->
+    <dimen name="title_sub_size">16sp</dimen>
+    <!-- 大标题 -->
+    <dimen name="title_big_size">24sp</dimen>
+
+    <!-- 小分割线的大小-->
+    <dimen name="divider_small_size">1dp</dimen>
+    <!-- 大分割线的大小-->
+    <dimen name="divider_large_size">3dp</dimen>
+
+    <!-- 正文标题大小-->
+    <dimen name="content_title_text_size">17sp</dimen>
+    <!--内容 -->
+    <dimen name="content_text_size">14sp</dimen>
+    <!-- 内容小字-->
+    <dimen name="content_sub_text_size">12sp</dimen>
+
+    <!--留言时间/标注/小日期、标注大小  -->
+    <dimen name="mark_text_size">12sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="title_bar_text_size">18sp</dimen>
+    <dimen name="title_bar_back_size">16sp</dimen>
+    <!--顶部标题栏高度-->
+    <dimen name="title_bar_height">48sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

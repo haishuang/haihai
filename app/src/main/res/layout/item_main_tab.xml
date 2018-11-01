@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="#fff"
+    android:orientation="horizontal">
+    <RelativeLayout
+        android:id="@+id/rl_home"
+        style="@style/layout_main_tab_bottom">
+
+        <ImageView
+            android:id="@+id/iv_tab_home"
+            style="@style/iv_main_tab_bottom"
+            android:src="@drawable/ic_selector_selectable_home_index2" />
+
+        <TextView
+            android:id="@+id/tv_tab_home"
+            style="@style/tv_main_tab_bottom"
+            android:layout_below="@+id/iv_tab_home"
+            android:text="@string/home_nav_index" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_b"
+        style="@style/layout_main_tab_bottom">
+
+        <ImageView
+            android:id="@+id/iv_tab_b"
+            style="@style/iv_main_tab_bottom"
+            android:src="@drawable/ic_selector_selectable_home_b2"  />
+
+        <TextView
+            android:id="@+id/tv_tab_b_count"
+            style="@style/tv_main_tab_bottom_msg_count"
+            android:layout_alignRight="@+id/iv_tab_b"
+            android:layout_alignTop="@+id/iv_tab_b"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_tab_b"
+            style="@style/tv_main_tab_bottom"
+            android:layout_below="@+id/iv_tab_b"
+            android:text="@string/home_nav_b" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_c"
+        style="@style/layout_main_tab_bottom">
+
+        <ImageView
+            android:id="@+id/iv_tab_msg"
+            style="@style/iv_main_tab_bottom"
+            android:src="@drawable/ic_selector_selectable_home_c2"  />
+
+        <TextView
+            android:id="@+id/tv_tab_msg"
+            style="@style/tv_main_tab_bottom"
+            android:layout_below="@+id/iv_tab_msg"
+            android:text="@string/home_nav_c" />
+
+        <TextView
+            android:id="@+id/tv_tab_msg_count"
+            style="@style/tv_main_tab_bottom_msg_count"
+            android:layout_alignRight="@+id/iv_tab_msg"
+            android:layout_marginRight="-6dp"
+            android:layout_alignTop="@+id/iv_tab_msg"
+            android:visibility="gone" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_mine"
+        style="@style/layout_main_tab_bottom">
+
+        <ImageView
+            android:id="@+id/iv_main_mine"
+            style="@style/iv_main_tab_bottom"
+            android:src="@drawable/ic_selector_selectable_home_mine2" />
+
+        <TextView
+            android:id="@+id/tv_tab_mine"
+            style="@style/tv_main_tab_bottom"
+            android:layout_below="@+id/iv_main_mine"
+            android:text="@string/home_nav_mine" />
+    </RelativeLayout>
+</LinearLayout>
+
