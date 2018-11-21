@@ -198,6 +198,8 @@ public class TitleBar extends RelativeLayout implements OnClickListener {
         mIcon1 = (TextView) findViewById(R.id.tv_icon1);
         mRl = (RelativeLayout) findViewById(R.id.rl);
         viewTitle = findViewById(R.id.view_title);
+
+        mPaddTop.setVisibility(GONE);
         mIcon1.setOnClickListener(this);
         tvRightName.setOnClickListener(this);
         tvBackName.setOnClickListener(this);

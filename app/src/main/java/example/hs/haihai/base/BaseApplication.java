@@ -8,6 +8,8 @@ import android.os.Handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.hs.baselibrary.utils.ScreenUtils;
+
 
 /**
  * Created by Huanghs on 2018/1/17.
@@ -21,22 +23,17 @@ public class BaseApplication extends Application {
     private List<Activity> activities = new ArrayList<>();
     //是否使用调试：true-开启调试，false关闭调试
     public static boolean isDebug = true;
-    //是否使用调试
-    public static boolean JPushDebug = true;
-    //当前使用的登录方式
-    public static boolean isZhiku;
-    //是否需要改变地址，只要做过地址切换就要变
-    public static boolean isChangePath = false;
     private Context mContext;
-    public static String BASE_URL = "";
-    public static Handler handler = new Handler();
+
+    //屏幕宽
+    private int screenWidth = 720;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         mInstance = this;
-
+        screenWidth = ScreenUtils.getScreenWidth(this);
     }
 
 
@@ -99,4 +96,8 @@ public class BaseApplication extends Application {
     }
     //---------------------------Activty 栈管理结束-----------------------------------------------
 
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
 }

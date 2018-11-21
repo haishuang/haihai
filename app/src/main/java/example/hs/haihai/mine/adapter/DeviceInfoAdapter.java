@@ -1,7 +1,7 @@
-package example.hs.haihai.adapter;
+package example.hs.haihai.mine.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,43 +13,46 @@ import java.util.List;
 
 import example.hs.baselibrary.base.BaseRecyclerViewAdapter;
 import example.hs.haihai.R;
-import example.hs.haihai.bean.MenuItem;
+import example.hs.haihai.bean.DeviceInfo;
 
-public class MineAdapter extends BaseRecyclerViewAdapter<MineAdapter.ViewHolder> {
-    private Fragment fragment;
-    private List<MenuItem> menuItems;
+public class DeviceInfoAdapter extends BaseRecyclerViewAdapter<DeviceInfoAdapter.ViewHolder> {
+    private Context context;
+    private List<DeviceInfo> deviceInfos;
 
-    public MineAdapter(Fragment fragment, List<MenuItem> menuItems) {
-        this.fragment = fragment;
-        this.menuItems = menuItems;
+    public DeviceInfoAdapter(Context context, List<DeviceInfo> deviceInfos) {
+        this.context = context;
+        this.deviceInfos = deviceInfos;
     }
 
     @Override
     public void onBindView(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder) {
             ViewHolder h = (ViewHolder) holder;
-            MenuItem menuItem = menuItems.get(position);
-            h.tvTitle.setText(TextUtils.isEmpty(menuItem.getTitle()) ? "" : menuItem.getTitle());
+            DeviceInfo deviceInfo = deviceInfos.get(position);
+            h.tvTitle.setText(TextUtils.isEmpty(deviceInfo.getTitle()) ? "" : deviceInfo.getTitle());
+            h.tvInfo.setText(TextUtils.isEmpty(deviceInfo.getInfo()) ? "" : deviceInfo.getInfo());
         }
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolder(LayoutInflater.from(fragment.getContext()).inflate(R.layout.item_mine, null));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_mine_device_info, null));
     }
 
     @Override
     public int getItemCount() {
-        return menuItems == null ? 0 : menuItems.size();
+        return deviceInfos == null ? 0 : deviceInfos.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle;
+        TextView tvInfo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title);
+            tvInfo = itemView.findViewById(R.id.tv_info);
         }
     }
 }
