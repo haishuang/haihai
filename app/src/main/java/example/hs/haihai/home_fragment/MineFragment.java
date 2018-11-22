@@ -16,6 +16,7 @@ import example.hs.haihai.adapter.MineAdapter;
 import example.hs.haihai.base.CommonLazyFragment;
 import example.hs.haihai.bean.MenuItem;
 import example.hs.haihai.mine.DeviceInfoActivity;
+import example.hs.haihai.mine.OtherActivity;
 
 /**
  */
@@ -46,6 +47,7 @@ public class MineFragment extends CommonLazyFragment {
     protected void initData() {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(1, "关于手机"));
+        menuItems.add(new MenuItem(2, "一些控件测试"));
 
         MineAdapter adapter = new MineAdapter(this, menuItems);
         rcv.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -57,6 +59,9 @@ public class MineFragment extends CommonLazyFragment {
                 switch (menuItems.get(position).getId()) {
                     case 1:
                         startActivity(DeviceInfoActivity.class);
+                        break;
+                    case 2:
+                        startActivity(OtherActivity.class);
                         break;
                     default:
                         break;

@@ -53,12 +53,12 @@
 
 
     <declare-styleable name="CirclePercentView">
-        <attr name="radius" format="dimension"/>
-        <attr name="stripeWidth" format="dimension"/><!--色带宽度-->
-        <attr name="percent" format="integer"/><!--百分比 最大值为100-->
-        <attr name="smallColor" format="color"/><!--色带宽度-->
+        <attr name="radius" format="dimension" />
+        <attr name="stripeWidth" format="dimension" /><!--色带宽度-->
+        <attr name="percent" format="integer" /><!--百分比 最大值为100-->
+        <attr name="smallColor" format="color" /><!--色带宽度-->
         <!--外圈颜色-->
-        <attr name="bigColor" format="color"/>
+        <attr name="bigColor" format="color" />
 
         <!--色带宽度-->
     </declare-styleable>
@@ -78,5 +78,30 @@
         <!-- 文字的颜色 -->
         <attr name="textColor" format="color"></attr>
 
+    </declare-styleable>
+
+    <declare-styleable name="amountView">
+        <!-- 加号可用状态按钮  -->
+        <attr name="addEnableImage" format="integer"></attr>
+        <!-- 加好不可用状态按钮  -->
+        <attr name="addDisEnableImage" format="integer"></attr>
+        <!-- 加号状态按钮组合  -->
+        <attr name="addStatusImage" format="integer"></attr>
+
+        <!-- 减号可用状态按钮  -->
+        <attr name="reduceEnableImage" format="integer"></attr>
+        <!-- 减好不可用状态按钮  -->
+        <attr name="reduceDisEnableImage" format="integer"></attr>
+        <!-- 减号状态按钮组合  -->
+        <attr name="reduceStatusImage" format="integer"></attr>
+
+        <attr name="amountTextSize" format="dimension|reference"></attr>
+        <attr name="amountTextColor" format="color|reference"></attr>
+        <attr name="amountBackground" format="color|reference"></attr>
+
+        <!--默认值-->
+        <attr name="defaultNumber" format="integer"></attr>
+        <!--最大值-->
+        <attr name="MaxNumber" format="integer"></attr>
     </declare-styleable>
 </resources>
