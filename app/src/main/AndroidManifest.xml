@@ -29,6 +29,19 @@
         </activity>
         <activity android:name=".mine.DeviceInfoActivity" />
         <activity android:name=".mine.OtherActivity"></activity>
+
+        <!--针对7.0+-->
+        <!--authorities，不能写死，否则容易出现冲突-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.android7.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths >
+    <!--
+    #1
+        <root-path/> 代表设备的根目录new File("/");
+        <files-path/> 代表context.getFilesDir()
+        <cache-path/> 代表context.getCacheDir()
+        <external-path/> 代表Environment.getExternalStorageDirectory()
+        <external-files-path>代表context.getExternalFilesDirs()
+        <external-cache-path>代表getExternalCacheDirs()
+
+    #2
+        path：真实目录
+        name:映射后的目录
+
+        如：
+         <external-path
+            name="external"
+            path="real_external" />
+        真实目录
+            Environment.getExternalStorageDirectory()+real_external/
+        映射为
+            content://${applicationId}.android7.fileProvider/external/
+
+            其中${applicationId}.android7.fileProvider与AndroidManifest.xml中的authorities有关
+
+      #3
+        app_XX均为真实环境目录，开发时候可以根据需求变更为实际目录，如qq是tencent。
+
+      #4
+       以下各种path根据需求添加即可，全部添加问题也不大
+    -->
+    <root-path
+        name="root"
+        path="" />
+    <files-path
+        name="files"
+        path="app_files" />
+
+    <cache-path
+        name="cache"
+        path="app_cache" />
+
+    <external-path
+        name="external"
+        path="app_external" />
+
+    <external-files-path
+        name="external_file_path"
+        path="app_external_file_path" />
+    <external-cache-path
+        name="external_cache_path"
+        path="app_external_cache_path" />
+
+</paths>
