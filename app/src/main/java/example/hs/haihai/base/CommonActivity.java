@@ -169,12 +169,12 @@ public abstract class CommonActivity extends BaseActivity
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (mImmersionBar != null) mImmersionBar.destroy();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }
         if (mButterKnife != null)
             mButterKnife.unbind();
+        super.onDestroy();
     }
 }

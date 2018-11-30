@@ -7,8 +7,35 @@
     android:orientation="vertical"
     tools:context=".home_ui.MainActivity">
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:text="A"/>
+    <example.hs.baselibrary.widget.TitleBar
+        android:id="@+id/ti_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:titleColor="@color/color_font_black"
+        app:titleText="通讯录"></example.hs.baselibrary.widget.TitleBar>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_below="@+id/ti_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" />
+
+    <example.hs.haihai.widget.WordsNavigation
+        android:id="@+id/words"
+        android:layout_below="@+id/ti_contacts"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/tvstyle"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:visibility="gone" />
 </RelativeLayout>
