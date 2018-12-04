@@ -38,4 +38,11 @@
         android:gravity="center"
         android:textSize="40sp"
         android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_width="@dimen/progressbar"
+        android:layout_height="@dimen/progressbar" />
 </RelativeLayout>

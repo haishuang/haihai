@@ -2,22 +2,21 @@ package example.hs.haihai.home_fragment;
 
 
 import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.util.Log;
+import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.github.dfqin.grantor.PermissionListener;
-import com.github.dfqin.grantor.PermissionsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,7 @@ import butterknife.Unbinder;
 import example.hs.baselibrary.widget.TitleBar;
 import example.hs.haihai.R;
 import example.hs.haihai.adapter.ContactsAdapter;
+import example.hs.haihai.base.BasePermissionActivity;
 import example.hs.haihai.base.LazyFragment;
 import example.hs.haihai.bean.Contacts;
 import example.hs.haihai.utils.ContactUtils;
@@ -47,6 +47,8 @@ public class CFragment extends LazyFragment {
     WordsNavigation words;
     @BindView(R.id.tv)
     TextView tv;
+    @BindView(R.id.progress)
+    ProgressBar progress;
     private Unbinder unbinder;
     @BindView(R.id.ti_contacts)
     TitleBar tiContacts;
@@ -57,9 +59,10 @@ public class CFragment extends LazyFragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            showView(progress, false);
             switch (msg.what) {
                 case 11:
-                    isSuccess=true;
+                    isSuccess = true;
                     adapter.notifyDataSetChanged();
                     break;
                 default:
@@ -94,33 +97,34 @@ public class CFragment extends LazyFragment {
 
 //        }
 //         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            requestPermissions(getContext(), new String[]{Manifest.permission.READ_PHONE_STATE}, new String[]{"读取手机通讯录"}, new BasePermissionActivity.RequestPermissionCallBack() {
-//                @Override
-//                public void granted() {
-//                    getContacts();
-//                }
-//
-//                @Override
-//                public void denied() {
-//
-//                }
-//            });
-            if (PermissionsUtil.hasPermission(getContext(), Manifest.permission.READ_CONTACTS)) {
-                getContacts();
-            } else {
-                PermissionsUtil.TipInfo tip = new PermissionsUtil.TipInfo("注意:", "我就是想看下你的通讯录", "不让看", "打开权限");
-                PermissionsUtil.requestPermission(getContext(), new PermissionListener() {
-                    @Override
-                    public void permissionGranted(@NonNull String[] permission) {
-                        getContacts();
-                    }
+            requestPermissions(getContext(), new String[]{Manifest.permission.READ_CONTACTS}, new String[]{"读取手机通讯录"}, new BasePermissionActivity.RequestPermissionCallBack() {
+                @Override
+                public void granted() {
+                    getContacts();
+                }
 
-                    @Override
-                    public void permissionDenied(@NonNull String[] permission) {
+                @Override
+                public void denied() {
 
-                    }
-                }, new String[]{Manifest.permission.READ_CONTACTS}, true, tip);
-            }
+                }
+            });
+
+//            if (PermissionsUtil.hasPermission(getContext(), Manifest.permission.READ_CONTACTS)) {
+//                getContacts();
+//            } else {
+//                PermissionsUtil.TipInfo tip = new PermissionsUtil.TipInfo("注意:", "我就是想看下你的通讯录", "不让看", "打开权限");
+//                PermissionsUtil.requestPermission(getContext(), new PermissionListener() {
+//                    @Override
+//                    public void permissionGranted(@NonNull String[] permission) {
+//                        getContacts();
+//                    }
+//
+//                    @Override
+//                    public void permissionDenied(@NonNull String[] permission) {
+//
+//                    }
+//                }, new String[]{Manifest.permission.READ_CONTACTS}, true, tip);
+//            }
         } else {
             getContacts();
         }
@@ -129,6 +133,7 @@ public class CFragment extends LazyFragment {
     private List<Contacts> contacts = new ArrayList<>();
 
     private void getContacts() {
+        showView(progress, true);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -141,12 +146,20 @@ public class CFragment extends LazyFragment {
     }
 
     private void initEvent() {
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter.setOnItemClickListener(new ContactsAdapter.OnItemClick() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            public void onClick(int i, View view) {
+                final String phoneNumber = contacts.get(i).getMobile();
+                if (view.getId() == R.id.iv_msg) {//<uses-permission android:name="android.permission.SEND_SMS" />
+                    //短信息
+                    sendSMSBySys(phoneNumber, "");
+                } else {
+                    //打电话，误点
+                    callBySys(phoneNumber);
+                }
             }
         });
+
 
         list.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -169,6 +182,61 @@ public class CFragment extends LazyFragment {
                 updateListView(words);
             }
         });
+    }
+
+
+    /**
+     * 直接调用短信接口发短信
+     *
+     * @param phoneNumber
+     * @param message
+     */
+    public void sendSMS(String phoneNumber, String message) {
+        //获取短信管理器
+        android.telephony.SmsManager smsManager = android.telephony.SmsManager.getDefault();
+        //拆分短信内容（手机短信长度限制）
+        List<String> divideContents = smsManager.divideMessage(message);
+        for (String text : divideContents) {
+            smsManager.sendTextMessage(phoneNumber, null, text, null, null);
+        }
+    }
+
+    /**
+     * 调起系统发短信功能
+     *
+     * @param phoneNumber
+     * @param message
+     */
+    public void sendSMSBySys(String phoneNumber, String message) {
+        if (PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)) {
+            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
+            intent.putExtra("sms_body", message);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * 直接打电话，需要权限
+     *
+     * @param phone
+     */
+    private void callByApp(String phone) {
+        call(phone, new Intent(Intent.ACTION_CALL));
+    }
+
+    /**
+     * 打开拨号盘，不需要权限
+     *
+     * @param phone
+     */
+    private void callBySys(String phone) {
+        call(phone, new Intent(Intent.ACTION_DIAL));
+    }
+
+    private void call(String phone, Intent intent) {
+        Uri data = Uri.parse("tel:" + phone);
+        intent.setData(data);
+        startActivity(intent);
     }
 
 

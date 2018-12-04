@@ -32,4 +32,5 @@
     <!--顶部标题栏高度-->
     <dimen name="title_bar_height">48sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="progressbar">30dp</dimen>
 </resources>

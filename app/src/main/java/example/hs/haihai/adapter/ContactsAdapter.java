@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -39,13 +40,14 @@ public class ContactsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.item_contacts, null);
             holder.tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
             holder.tvName = (TextView) convertView.findViewById(R.id.tv_name);
+            holder.ivMsg = convertView.findViewById(R.id.iv_msg);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -66,11 +68,38 @@ public class ContactsAdapter extends BaseAdapter {
 
         }
 
+        //控制点击事件
+        holder.tvName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClick != null)
+                    onItemClick.onClick(position, view);
+            }
+        });
+        holder.ivMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClick != null)
+                    onItemClick.onClick(position, view);
+            }
+        });
+
         return convertView;
+    }
+
+    public interface OnItemClick {
+        void onClick(int i, View view);
+    }
+
+    private OnItemClick onItemClick;
+
+    public void setOnItemClickListener(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
     }
 
     private class ViewHolder {
         private TextView tvTitle;
         private TextView tvName;
+        private ImageView ivMsg;
     }
 }
