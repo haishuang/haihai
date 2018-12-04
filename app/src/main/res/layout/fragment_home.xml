@@ -7,8 +7,24 @@
     android:orientation="vertical"
     tools:context=".home_ui.MainActivity">
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:text="home"/>
+    <TextView
+        android:id="@+id/tv_01"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:textColor="#ff0000"
+        android:focusable="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusableInTouchMode="true"
+        android:singleLine="true"
+        android:background="#000000"
+        android:text="我是跑马灯跑跑跑跑跑跑跑跑跑跑跑跑跑跑跑跑跑跑跑跑跑2跑跑跑跑3跑跑,但是如果没有焦点了就跑不动了" />
+
+    <!--<example.hs.baselibrary.widget.MarqueeText-->
+        <!--android:layout_below="@+id/tv_01"-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:background="#000000" />-->
 </RelativeLayout>
