@@ -48,6 +48,7 @@ public class SplashActivity extends CommonActivity {
             public void onProgress(int progress) {
                 if (progress == 0) {
                     showActivity(MainActivity.class);//去主页
+                    finish();
                 }
             }
         });
@@ -75,5 +76,6 @@ public class SplashActivity extends CommonActivity {
                 showActivity(Main2Activity.class);//去主页
                 break;
         }
+        finish();
     }
 }

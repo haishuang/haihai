@@ -5,4 +5,5 @@
     <string name="home_nav_b">选项B</string>
     <string name="home_nav_mine">我的</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="text_net_error">请求网络出错，请重试！</string>
 </resources>
